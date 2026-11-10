@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Сладовский Руслан — 1С-разработчик</title>
+<meta name="description" content="Сладовский Руслан — 1С-разработчик с опытом более 8 лет. Доработка КА 2.5, БП 3.0, ЗУП 3.1, Документооборот. Мобильное приложение «Мои продажи» в Реестре российского ПО." />
+<style>
+  :root{
+    --bg:#0a0e12;
+    --bg-soft:#0f141a;
+    --surface:#111820;
+    --surface-2:#16202b;
+    --border:#1e2a36;
+    --border-glow:rgba(0,229,204,.35);
+    --text:#e6edf3;
+    --muted:#8b9bab;
+    --accent:#00e5cc;
+    --accent-hover:#33ffee;
+    --accent-soft:rgba(0,229,204,.08);
+    --accent-text:#0a0e12;
+    --good:#3ddc84;
+    --good-soft:rgba(61,220,132,.1);
+    --mono:'JetBrains Mono','Fira Code','Consolas','Courier New',monospace;
+    --sans:'Inter','Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+    --radius:10px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--sans);
+    background:var(--bg); color:var(--text); line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    background-image:
+      linear-gradient(rgba(0,229,204,.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,204,.025) 1px, transparent 1px);
+    background-size:40px 40px;
+  }
+  a{color:var(--accent); text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:980px; margin:0 auto; padding:0 24px}
+  section{padding:64px 0}
+  h2{
+    font-family:var(--mono);
+    font-size:1.35rem; margin-bottom:28px; font-weight:600;
+    color:var(--text); letter-spacing:-.3px;
+  }
+  h2::before{
+    content:"// ";
+    color:var(--accent);
+    font-weight:700;
+  }
+
+  /* Header */
+  header{
+    position:sticky; top:0; z-index:10;
+    background:rgba(10,14,18,.9); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav{display:flex; align-items:center; justify-content:center; padding:16px 0}
+  .nav-links{display:flex; gap:6px; font-size:.88rem; justify-content:center; flex-wrap:wrap; font-family:var(--mono)}
+  .nav-links a{
+    color:var(--muted); padding:8px 14px; border-radius:6px;
+    transition:background .15s, color .15s; border:1px solid transparent;
+  }
+  .nav-links a:hover{
+    color:var(--accent); background:var(--accent-soft);
+    border-color:var(--border-glow); text-decoration:none;
+  }
+
+  /* Hero — градиент на всю ширину экрана */
+  .hero{
+    padding:88px 0 64px;
+    border-bottom:1px solid var(--border);
+    background:
+      radial-gradient(ellipse 1200px 600px at 15% 0%, rgba(0,229,204,.14), transparent 60%),
+      radial-gradient(ellipse 900px 500px at 90% 10%, rgba(0,229,204,.06), transparent 65%);
+  }
+  .badge{
+    display:inline-block; font-family:var(--mono);
+    font-size:.78rem; letter-spacing:.5px; font-weight:600;
+    background:var(--accent-soft); color:var(--accent);
+    border:1px solid var(--border-glow);
+    padding:6px 14px; border-radius:6px; margin-bottom:20px;
+  }
+  .hero h1{font-size:2.6rem; line-height:1.15; margin-bottom:14px; letter-spacing:-.6px; font-weight:700}
+  .hero h1 small{display:block; font-size:1.05rem; color:var(--muted); font-weight:400; margin-top:10px; letter-spacing:0}
+  .lead{color:var(--muted); max-width:660px; margin-bottom:30px; font-size:1.02rem}
+  .btns{display:flex; gap:12px; flex-wrap:wrap}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:12px 22px; border-radius:8px; font-size:.93rem; font-weight:600;
+    font-family:var(--mono);
+    border:1px solid var(--border); color:var(--text); background:var(--surface);
+    transition:transform .15s ease, border-color .15s, background .15s, box-shadow .15s;
+  }
+  .btn:hover{
+    text-decoration:none; transform:translateY(-2px);
+    border-color:var(--accent); color:var(--accent);
+    box-shadow:0 0 20px rgba(0,229,204,.15);
+  }
+  .btn-primary{
+    background:var(--accent); border-color:var(--accent); color:var(--accent-text);
+  }
+  .btn-primary:hover{
+    background:var(--accent-hover); border-color:var(--accent-hover);
+    color:var(--accent-text); box-shadow:0 0 24px rgba(0,229,204,.35);
+  }
+
+  /* About */
+  .about p{color:var(--muted); margin-bottom:14px; max-width:760px; font-size:1rem}
+  .about p b{color:var(--accent); font-family:var(--mono); font-weight:600}
+  .tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:22px}
+  .tag{
+    font-family:var(--mono);
+    font-size:.8rem; padding:6px 12px; border-radius:6px; font-weight:500;
+    background:var(--surface); border:1px solid var(--border); color:#b6c2cf;
+    transition:border-color .15s, color .15s;
+  }
+  .tag:hover{border-color:var(--border-glow); color:var(--accent)}
+
+  /* Cards */
+  .card{
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:var(--radius); padding:26px 28px; margin-bottom:18px;
+    position:relative; transition:border-color .2s, box-shadow .2s;
+  }
+  .card:hover{
+    border-color:var(--border-glow);
+    box-shadow:0 0 0 1px var(--accent-soft), 0 8px 30px rgba(0,0,0,.4);
+  }
+  .card h3{
+    font-size:1.08rem; margin-bottom:6px; letter-spacing:-.2px;
+    color:var(--text);
+  }
+  .card .sub{
+    color:var(--muted); font-size:.84rem; margin-bottom:16px;
+    font-family:var(--mono);
+  }
+  .card ul{list-style:none}
+  .card li{
+    position:relative; padding-left:26px; margin-bottom:13px;
+    color:#cfd6e2; font-size:.95rem;
+  }
+  .card li::before{
+    content:"▸"; position:absolute; left:0; top:0;
+    color:var(--accent); font-weight:700; font-family:var(--mono);
+  }
+  .card li b{color:var(--text); font-weight:600}
+  .ex{color:var(--muted); font-size:.87rem; display:block; margin-top:3px}
+
+  /* Mobile dev */
+  .project{display:grid; grid-template-columns:1fr; gap:18px}
+  .project .card{margin-bottom:0}
+  .project-head{display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:12px}
+  .project-head h3{margin:0}
+  .pill{
+    font-family:var(--mono); font-size:.74rem; font-weight:600;
+    background:var(--good-soft); color:var(--good);
+    padding:5px 12px; border-radius:6px;
+    border:1px solid rgba(61,220,132,.25);
+  }
+  .features{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:11px 20px; margin-top:10px}
+  .features div{color:#cfd6e2; font-size:.93rem; position:relative; padding-left:26px}
+  .features div::before{
+    content:"✓"; position:absolute; left:0; top:0;
+    color:var(--good); font-weight:700; font-family:var(--mono);
+  }
+
+  /* Contacts */
+  .contacts{display:flex; gap:12px; flex-wrap:wrap}
+  footer{
+    padding:36px 0; color:var(--muted); font-size:.82rem; text-align:center;
+    border-top:1px solid var(--border); background:var(--bg-soft);
+    font-family:var(--mono);
+  }
+
+  /* Responsive */
+  @media (max-width:640px){
+    .hero{padding:56px 0 48px}
+    .hero h1{font-size:1.9rem}
+    section{padding:44px 0}
+    .card{padding:20px 20px}
+    .nav-links a{padding:6px 10px; font-size:.82rem}
+    h2{font-size:1.2rem}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <nav class="nav-links">
+      <a href="#about">О себе</a>
+      <a href="#skills">Что умею</a>
+      <a href="#prev">Опыт</a>
+      <a href="#mobile">Мобильная разработка</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <span class="badge">&gt; 1С-разработчик</span>
+    <h1>Сладовский Руслан
+      <small>Доработка и поддержка конфигураций 1С · интеграции · мобильная разработка</small>
+    </h1>
+    <p class="lead">
+      Разрабатываю и дорабатываю решения на платформе 1С: отчётность, обмены, интеграции и мобильные приложения.
+    </p>
+    <div class="btns">
+      <a class="btn btn-primary" href="mailto:sladovskiy.r@mail.ru">Связаться</a>
+    </div>
+  </div>
+</div>
+
+<section id="about">
+  <div class="wrap about">
+    <h2>О себе</h2>
+    <p><b>Опыт работы с 1С-разработкой — более 8 лет.</b></p>
+    <p>До разработки на платформе 1С занимался web-программированием (PHP, Java).</p>
+    <p>Люблю сложные задачи, требующие интересных решений. Следую стандартам разработки и пишу понятный, поддерживаемый код. Умею разбираться в чужом коде.</p>
+    <p>Ищу эффективные способы решения задач, не ограничиваясь общепринятыми вариантами. Использую современные инструменты, собственные наработки и искусственный интеллект, когда это ускоряет результат. Но код пишу сам — так надёжнее.</p>
+    <div class="tags">
+      <span class="tag">1С:КА 2.5</span>
+      <span class="tag">1С:БП 3.0 КОРП</span>
+      <span class="tag">1С:ЗУП 3.1 КОРП</span>
+      <span class="tag">1С:Документооборот 2/3</span>
+      <span class="tag">КД 2 / КД 3</span>
+      <span class="tag">HTTP / WEB-сервисы</span>
+      <span class="tag">XML / JSON</span>
+      <span class="tag">Управляемые формы</span>
+      <span class="tag">Расширения</span>
+      <span class="tag">Хранилище конфигураций</span>
+      <span class="tag">Мобильная платформа 1С</span>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <h2>Что умею — опыт на текущем месте работы и задачи с фриланса</h2>
+
+    <div class="card">
+      <h3>Доработка и поддержка конфигураций 1C</h3>
+      <div class="sub">КА 2.5 · БП 3.0 КОРП · ЗУП 3.1 КОРП · Документооборот 2/3</div>
+      <ul>
+        <li><b>Разрабатываю отчёты, обработки и печатные формы</b> под задачи бизнеса — включая обработки по расписанию, печатные формы в форматах 1С и Word.</li>
+        <li><b>Дорабатываю механизмы складского и серийного учёта:</b> изменяю типовые механизмы хранения и обработки серий, их движения по регистрам — под требования бизнеса.</li>
+        <li><b>Модифицирую типовые обмены (КД 2, КД 3) и разрабатываю собственные</b> — на КД 2 и через WEB/HTTP-сервисы. <span class="ex">Пример: обмен кадровой информацией между тремя базами 1С (ЗУП) через web-сервис.</span></li>
+        <li><b>Автоматизирую бизнес-процессы отделов компании.</b> <span class="ex">Пример: расширение с собственными метаданными, которое хранит правила (отборы на СКД) и автоматически заполняет поля при загрузке банковских выписок.</span></li>
+        <li><b>Реализовываю интеграции со сторонними системами по XML и JSON</b> — типовыми и самописными механизмами. <span class="ex">Пример: обмен по API с системой СБИС в «Документообороте 2» — статусы подписания документов, загрузка вложений и подписей.</span></li>
+        <li><b>Оптимизирую код, обработку данных и запросы.</b> <span class="ex">Пример: ускорил обработку таблиц объёмом &gt;300 тыс. строк с 30 до 5 минут.</span></li>
+        <li><b>Обновляю типовые и доработанные конфигурации</b> — стандартными средствами, вручную и с помощью сторонних инструментов (например, «Обновлятор 1С»).</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Подходы к разработке</h3>
+      <div class="sub">Как я работаю</div>
+      <ul>
+        <li>Разработка на <b>управляемых формах</b>.</li>
+        <li>Доработка конфигураций преимущественно через <b>расширения</b>.</li>
+        <li>Использование <b>хранилища конфигураций</b> при командной разработке.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="prev">
+  <div class="wrap">
+    <h2>Опыт на предыдущем месте работы</h2>
+
+    <div class="card">
+      <h3>Доработка и внедрение конфигураций 1С</h3>
+      <div class="sub">ЗУП 3.0 · БП 3.0 · УАТ · Документооборот · Охрана труда</div>
+      <ul>
+        <li><b>Дорабатывал типовые конфигурации</b> — «Зарплата и управление персоналом 3.0», «Бухгалтерия предприятия 3.0».</li>
+        <li><b>Внедрял и дорабатывал отраслевые решения:</b> «1С:Управление автотранспортом» (УАТ), «1С:Охрана труда».</li>
+        <li><b>Внедрял и дорабатывал «1С:Документооборот».</b></li>
+        <li><b>Дорабатывал модули сторонних разработчиков:</b> «Финансы 360» (бюджетирование и казначейство), «БИТ УМ» (учёт мигрантов).</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Интеграции и обмены</h3>
+      <div class="sub">Art-Trade · FactorPlat · КД 2/3 · JSON / XML</div>
+      <ul>
+        <li><b>Интегрировал и поддерживал обмены с системой учёта Art-Trade.</b></li>
+        <li><b>Разрабатывал Web- и HTTP-сервисы для обмена информацией со сторонними системами</b> (Art-Trade, FactorPlat) — форматы JSON и XML.</li>
+        <li><b>Разрабатывал правила обмена через «1С:Конвертация данных» (2, 3).</b></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Автоматизация и отчётность</h3>
+      <div class="sub">СКД · подсистемы · обработки</div>
+      <ul>
+        <li><b>Писал собственные подсистемы</b> для учёта и автоматизации отделов компании.</li>
+        <li><b>Разрабатывал отчёты на СКД, внешние обработки и печатные формы.</b></li>
+        <li><b>Автоматизировал бухгалтерские и прочие бизнес-процессы.</b></li>
+        <li><b>Обновлял типовые и доработанные конфигурации.</b></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Администрирование серверов 1С (MS SQL)</h3>
+      <div class="sub">Базы данных · обслуживание</div>
+      <ul>
+        <li><b>Настраивал резервное копирование и обслуживание баз данных.</b></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="mobile">
+  <div class="wrap">
+    <h2>Мобильная разработка</h2>
+    <div class="project">
+      <div class="card">
+        <div class="project-head">
+          <h3>«Мои продажи» — мобильное приложение на платформе 1С</h3>
+          <span class="pill">Реестр российского ПО</span>
+        </div>
+        <p style="color:var(--muted); margin-bottom:14px;">
+          Приложение для управления торговым персоналом. Распространяется через магазин приложений RuStore.
+        </p>
+        <div class="features">
+          <div>Авторизация</div>
+          <div>Ввод продаж и остатков товара</div>
+          <div>Корректировка продаж</div>
+          <div>Итоговый отчёт</div>
+          <div>Просмотр аналитики и отчётов</div>
+          <div>Геолокация для отметок на рабочем месте</div>
+          <div>Двусторонний обмен с центральной системой 1С</div>
+        </div>
+        <div class="btns" style="margin-top:22px;">
+          <a class="btn btn-primary" href="https://www.rustore.ru/catalog/app/ru.red.sales" target="_blank" rel="noopener">Смотреть в RuStore</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contacts">
+  <div class="wrap">
+    <h2>Контакты</h2>
+    <p style="color:var(--muted); margin-bottom:22px;">Открыт к предложениям. Свяжитесь удобным способом.</p>
+    <div class="contacts">
+      <a class="btn btn-primary" href="mailto:sladovskiy.r@mail.ru">sladovskiy.r@mail.ru</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© <span id="year"></span> Сладовский Руслан · 1С-разработчик</div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
